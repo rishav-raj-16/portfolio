@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="color-scheme" content="light dark"/>
+<link rel="icon" href="data:,"/>
+<title>Rishav Raj — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f3ee; --bg2:#e9ebe3; --surface:#ffffff; --surface2:#f7f7f2;
+  --ink:#0a0e13; --muted:#5b6572; --line:#dde0d6;
+  --cyan:#0097b8; --cyan-bright:#00c2e8; --lime:#5a8a00; --lime-bg:#e8f5c8;
+  --accent:#0a0e13; --chip:#eef0e8;
+  --nav-bg:rgba(242,243,238,.88);
+  --glow:rgba(0,194,232,.18);
+  --card-shadow:0 12px 32px rgba(10,14,19,.08);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#05080c; --bg2:#070b10; --surface:#0b1118; --surface2:#0e1620;
+    --ink:#eef4f8; --muted:#9aa8b5; --line:#1c2a36;
+    --cyan:#00d9ff; --cyan-bright:#5eeaff; --lime:#b8f135; --lime-bg:#1a2a0a;
+    --accent:#eef4f8; --chip:#131e2a;
+    --nav-bg:rgba(5,8,12,.84);
+    --glow:rgba(0,217,255,.22);
+    --card-shadow:0 18px 40px rgba(0,0,0,.45);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Manrope",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+::selection{background:var(--cyan);color:#fff}
+
+/* cursor glow */
+#glow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,var(--glow) 0%,transparent 62%);transform:translate(-50%,-50%);left:50%;top:20%;opacity:.9;transition:opacity .3s}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--nav-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1180px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-family:"Sora",sans-serif;font-weight:800;letter-spacing:-.02em;font-size:18px;text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo-mark{width:32px;height:32px;border-radius:9px;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700}
+.logo span em{font-style:normal;color:var(--cyan)}
+.nav-links{display:flex;gap:6px;flex-wrap:wrap}
+.nav-links a{text-decoration:none;font-size:13.5px;font-weight:600;padding:8px 12px;border-radius:999px;color:var(--muted)}
+.nav-links a:hover{color:var(--ink);background:var(--chip)}
+.nav-cta{background:var(--ink)!important;color:var(--bg)!important}
+@media(max-width:640px){.nav-links a:not(.nav-cta){display:none}.nav-inner{padding:12px 16px}}
+
+/* layout */
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+section{scroll-margin-top:84px}
+
+/* hero */
+.hero{position:relative;padding:118px 0 28px;overflow:hidden}
+#neural{position:absolute;inset:0;width:100%;height:100%;opacity:.85;pointer-events:none}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;opacity:.28;mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,black 30%,transparent 100%);pointer-events:none}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:start}
+@media(max-width:860px){.hero-inner{grid-template-columns:1fr}}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);padding:7px 12px;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.dot{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 5px rgba(34,197,94,.18);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+h1{font-family:"Sora",sans-serif;font-size:clamp(52px,9vw,96px);line-height:.92;letter-spacing:-.05em;margin:18px 0 10px;font-weight:800}
+h1 .thin{font-weight:400;color:var(--muted)}
+h1 .cyan{color:var(--cyan)}
+.role-line{font-family:"JetBrains Mono",monospace;font-size:clamp(14px,2vw,18px);min-height:28px;color:var(--ink)}
+.role-line b{color:var(--cyan)}
+.caret{display:inline-block;width:8px;height:18px;background:var(--cyan);vertical-align:-2px;margin-left:3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.lead{font-size:17px;color:var(--muted);max-width:620px;margin:16px 0 0}
+.lead strong{color:var(--ink)}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.btn{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:12px 18px;border-radius:999px;font-weight:700;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:.2s}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--card-shadow)}
+.btn-primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn-cyan{background:var(--cyan);color:#031018;border-color:transparent}
+.hero-meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--muted)}
+.hero-meta a{text-decoration:none;border-bottom:1px dashed var(--line)}
+
+/* terminal / profile card */
+.term{background:#0a0f16;color:#dbeafe;border-radius:18px;overflow:hidden;border:1px solid #1e293b;box-shadow:0 24px 50px rgba(0,0,0,.28);transform:perspective(900px)}
+.term-head{display:flex;align-items:center;gap:8px;padding:12px 14px;background:#0f172a;border-bottom:1px solid #1e293b}
+.tdot{width:10px;height:10px;border-radius:50%}
+.term-body{padding:16px 16px 18px;font-family:"JetBrains Mono",monospace;font-size:12.8px;line-height:1.75;min-height:272px}
+.term-body .k{color:#7dd3fc}.term-body .s{color:#a3e635}.term-body .c{color:#64748b}.term-body .w{color:#f8fafc}
+.avatar-row{display:flex;gap:14px;align-items:center;margin-bottom:14px}
+.avatar{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#00d9ff,#a3e635);display:grid;place-items:center;font-family:"Sora",sans-serif;font-weight:800;font-size:20px;color:#041018;flex-shrink:0}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:18px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px}
+.stat b{font-family:"Sora",sans-serif;font-size:26px;line-height:1;display:block;letter-spacing:-.03em;white-space:nowrap}
+.stat b .count{font-size:inherit}
+.stat>span{font-size:12px;color:var(--muted);font-weight:600;line-height:1.3;display:block;margin-top:5px}
+@media(max-width:860px){.stats{grid-template-columns:1fr 1fr 1fr}}
+@media(max-width:480px){.stats{grid-template-columns:1fr 1fr}}
+
+/* sections */
+.section{padding:56px 0 8px}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.sec-label{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);font-weight:700}
+.sec-head h2{font-family:"Sora",sans-serif;font-size:clamp(28px,4vw,40px);letter-spacing:-.04em;line-height:1;margin:6px 0 0}
+.sec-head p{color:var(--muted);max-width:520px;margin:0;font-size:14.5px}
+
+/* reveal — content is always visible; .in only triggers counters/bars via JS */
+.reveal{opacity:1;transform:none}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.caret,.dot{animation:none}}
+
+/* experience */
+.exp-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--card-shadow)}
+.exp-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.exp-top h3{font-family:"Sora",sans-serif;font-size:22px;margin:0;letter-spacing:-.02em}
+.exp-top p{margin:4px 0 0;color:var(--muted);font-weight:600}
+.pill{font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--lime-bg);color:var(--lime);border:1px solid var(--line);padding:7px 10px;border-radius:999px;height:fit-content;white-space:nowrap}
+.exp-list{margin:16px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:700px){.exp-list{grid-template-columns:1fr}}
+.exp-list li{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:12px 13px;font-size:14px;color:var(--muted)}
+.exp-list li strong{color:var(--ink)}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.tag{font-family:"JetBrains Mono",monospace;font-size:11.5px;padding:6px 9px;border-radius:999px;background:var(--chip);border:1px solid var(--line);font-weight:600}
+
+/* skills */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.fbtn{border:1px solid var(--line);background:var(--surface);padding:9px 14px;border-radius:999px;font-weight:700;font-size:13px}
+.fbtn.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:900px){.skills-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.skills-grid{grid-template-columns:1fr}}
+.skill-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.skill-card h3{margin:0 0 4px;font-family:"Sora",sans-serif;font-size:16px}
+.skill-card p{margin:0;color:var(--muted);font-size:13.5px}
+.skill-bar{height:6px;background:var(--chip);border-radius:999px;margin-top:14px;overflow:hidden}
+.skill-bar i{display:block;height:100%;background:var(--cyan);border-radius:999px;width:0;transition:width 1s ease}
+.skill-card.hidden{display:none}
+
+/* projects */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:800px){.proj-grid{grid-template-columns:1fr}}
+.proj{grid-column:span 1;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--card-shadow);transition:transform .25s ease,box-shadow .25s ease;will-change:transform}
+.proj.featured{grid-column:1/-1;background:var(--ink);color:var(--bg);border-color:transparent}
+@media(prefers-color-scheme: dark){.proj.featured{background:#0e1a24;border-color:#1e3a4a;color:#eef4f8}}
+.proj.featured p,.proj.featured .proj-sub{color:#a8bdd0}
+@media(prefers-color-scheme: light){.proj.featured p,.proj.featured .proj-sub{color:#cbd5e1}}
+.proj h3{font-family:"Sora",sans-serif;font-size:20px;margin:10px 0 6px;letter-spacing:-.02em}
+.proj.featured h3{font-size:26px;color:#fff}
+.proj p{color:var(--muted);font-size:14.5px;margin:0}
+.proj-kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.proj-kicker.c1{color:var(--cyan)} .proj-kicker.c2{color:#e8792e} .proj-kicker.c3{color:#7c5cff}
+.proj ul{margin:12px 0 0;padding-left:18px;font-size:14px;color:var(--muted)}
+.proj.featured ul{color:#cbd5e1}
+.proj-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap}
+.link-btn{font-weight:700;font-size:13.5px;text-decoration:none;display:inline-flex;gap:6px;align-items:center}
+.detail{display:none;margin-top:14px;border-top:1px dashed var(--line);padding-top:14px;font-size:14px;color:var(--muted)}
+.detail.open{display:block}
+.toggle{border:1px solid var(--line);background:transparent;color:inherit;padding:8px 12px;border-radius:999px;font-weight:700;font-size:13px}
+.proj.featured .toggle{border-color:rgba(255,255,255,.25);color:#fff}
+.proj.featured .tag{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:inherit}
+
+/* achievements + education */
+.two-col{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}
+@media(max-width:800px){.two-col{grid-template-columns:1fr}}
+.ach-card,.edu-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px}
+.ach-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.ach-item:last-child{border-bottom:0}
+.ach-num{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-family:"Sora",sans-serif;font-weight:800;flex-shrink:0;background:var(--chip);border:1px solid var(--line)}
+.ach-item h4{margin:0;font-size:15px}.ach-item p{margin:2px 0 0;color:var(--muted);font-size:13.5px}
+.edu-card h3{font-family:"Sora",sans-serif;margin:6px 0 4px;font-size:18px;line-height:1.25}
+.edu-card p{color:var(--muted);margin:0;font-size:14px}
+
+/* playground */
+.play{background:#0a0f16;color:#e2e8f0;border-radius:20px;padding:20px;border:1px solid #1e293b}
+.play h3{font-family:"Sora",sans-serif;margin:0 0 6px;color:#fff}
+.play p{color:#94a3b8;font-size:14px;margin:0}
+.play-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.pbtn{border:1px solid #334155;background:#111827;color:#e2e8f0;padding:9px 13px;border-radius:999px;font-weight:700;font-size:13px}
+.pbtn.active{background:#00d9ff;color:#031018;border-color:transparent}
+#playOut{font-family:"JetBrains Mono",monospace;font-size:12.8px;background:#020617;border:1px solid #1e293b;border-radius:12px;padding:14px;margin-top:14px;min-height:86px;line-height:1.7;white-space:pre-wrap}
+
+/* contact */
+.contact{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:24px;display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
+@media(max-width:800px){.contact{grid-template-columns:1fr}}
+.contact h2{font-family:"Sora",sans-serif;font-size:32px;letter-spacing:-.04em;line-height:1;margin:0 0 8px}
+.contact p{color:var(--muted);margin:0}
+.c-list{display:grid;gap:10px}
+.c-item{border:1px solid var(--line);background:var(--surface2);border-radius:14px;padding:13px 14px;text-decoration:none;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.c-item small{display:block;color:var(--muted);font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.c-item strong{font-size:14.5px}
+footer{padding:28px 0 36px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--cyan);z-index:60;width:0%}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div id="glow"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#top"><span class="logo-mark">RR</span> Rishav Raj <span style="color:var(--muted);font-weight:500">/ <em>portfolio</em></span></a>
+    <nav class="nav-links" aria-label="Portfolio">
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#achievements">Wins</a>
+      <a href="#contact" class="nav-cta">Contact →</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+  <!-- HERO -->
+  <section class="hero">
+    <canvas id="neural" aria-hidden="true"></canvas>
+    <div class="hero-grid-bg"></div>
+    <div class="hero-inner">
+      <div>
+        <span class="badge"><span class="dot"></span> Application Developer · IBM · Open to SDE roles</span>
+        <h1>Rishav<br><span class="thin">Raj</span> <span class="cyan">.</span></h1>
+        <div class="role-line" aria-live="polite">I build as a <b id="typed">Full Stack Quality Engineer</b><span class="caret"></span></div>
+        <p class="lead">Full Stack Quality Engineer at <strong>IBM</strong> with hands-on <strong>Java, OOP &amp; test automation</strong>, strong DSA — <strong>600+ LeetCode problems solved</strong> — and a habit of tracing bugs to their root cause through logs, regression runs and CI pipelines. Now building and shipping quality product features as a software engineer.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View projects ↓</a>
+          <a class="btn btn-cyan" href="#contact">Let's talk</a>
+          <button class="btn" id="copyEmailBtn" type="button">Copy email</button>
+        </div>
+        <div class="hero-meta">
+          <span>📍 India</span>
+          <a href="mailto:rajrishav1604@gmail.com">rajrishav1604@gmail.com</a>
+          <a href="https://github.com/rishav-raj-16" target="_blank" rel="noopener">github.com/rishav-raj-16 ↗</a>
+          <a href="https://www.linkedin.com/in/raj-rishav16" target="_blank" rel="noopener">linkedin.com/in/raj-rishav16 ↗</a>
+          <a href="https://leetcode.com/u/rishav_raj_2002/" target="_blank" rel="noopener">leetcode.com/u/rishav_raj_2002 ↗</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b><span class="count" data-target="600">0</span>+</b><span>LeetCode problems solved</span></div>
+          <div class="stat"><b><span class="count" data-target="3">0</span></b><span>Projects shipped — SaaS, mobile &amp; C++ engine</span></div>
+          <div class="stat"><b>1st</b><span>Place — Code Crusher coding event</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="term" id="tiltCard">
+          <div class="term-head"><span class="tdot" style="background:#f87171"></span><span class="tdot" style="background:#fbbf24"></span><span class="tdot" style="background:#34d399"></span><span style="margin-left:6px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#94a3b8;letter-spacing:.08em">rishav@ibm — zsh</span><span style="margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;color:#94a3b8">PROFILE</span></div>
+          <div class="term-body" id="termBody">
+            <div class="avatar-row"><div class="avatar">RR</div><div><div style="font-family:'Sora',sans-serif;font-weight:700;color:#fff;font-size:15px;line-height:1.1">Rishav Raj</div><div style="color:#94a3b8;font-size:12px">B.Tech CSE ’25 · Chandigarh Engineering College, Jhanjeri</div></div></div>
+            <div><span class="c">$</span> <span class="w">whoami</span></div>
+            <div><span class="k">role</span> <span class="c">=</span> <span class="s">"Full Stack Quality Engineer @ IBM"</span></div>
+            <div><span class="k">stack</span> <span class="c">=</span> <span class="s">["Java","Selenium","Cucumber","MySQL"]</span></div>
+            <div><span class="k">focus</span> <span class="c">=</span> <span class="s">"DSA · Automation · Product Engineering"</span></div>
+            <div style="margin-top:10px"><span class="c">$</span> <span class="w">daily --tools</span> &nbsp;<span style="color:#22c55e">Selenium · Cucumber · QFFA · MySQL</span></div>
+            <div id="termLog" style="color:#7dd3fc"></div>
+          </div>
+        </div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-align:center;margin:10px 0 0;letter-spacing:.06em">↖ MOVE YOUR CURSOR — THE NETWORK REACTS · CARD TILTS IN 3D</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section reveal">
+    <div class="sec-head"><div><div class="sec-label">01 — Experience</div><h2>Where I work</h2></div><p>Shipping reliable software at enterprise scale — automation, BDD and data validation inside an Agile CI lifecycle.</p></div>
+    <article class="exp-card">
+      <div class="exp-top"><div><h3>IBM — Application Developer</h3><p>Full Stack Quality Engineer</p></div><span class="pill">Oct 2025 — Present</span></div>
+      <ul class="exp-list">
+        <li><strong>Automated test suites</strong> in Java &amp; Selenium WebDriver validating functionality across releases.</li>
+        <li><strong>BDD with Cucumber</strong> — Gherkin Given/When/Then mapped to Java step definitions in QFFA, a Page Object Model framework.</li>
+        <li><strong>Deep debugging</strong> — tracing failing tests &amp; defects through logs and regression runs in the CI lifecycle.</li>
+        <li><strong>End-to-end data validation</strong> using MySQL queries against live application data.</li>
+        <li><strong>Build &amp; collaboration</strong> — Git, GitHub &amp; Bitbucket; suites built and run with Maven / Gradle.</li>
+        <li><strong>Scrum Agile team</strong> — working daily with developers, product managers and QA.</li>
+      </ul>
+      <div class="tags"><span class="tag">Java</span><span class="tag">Selenium WebDriver</span><span class="tag">Cucumber · BDD</span><span class="tag">Page Object Model</span><span class="tag">MySQL</span><span class="tag">Maven / Gradle</span><span class="tag">Git</span><span class="tag">CI Pipelines</span></div>
+    </article>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section reveal">
+    <div class="sec-head"><div><div class="sec-label">02 — Stack</div><h2>Technical skills</h2></div><p>Filter by what you need. Bars reflect day-to-day depth from work and projects — not buzzwords.</p></div>
+    <div class="filters" role="group" aria-label="Filter skills">
+      <button class="fbtn active" data-filter="all">All</button>
+      <button class="fbtn" data-filter="lang">Languages</button>
+      <button class="fbtn" data-filter="test">Testing &amp; Automation</button>
+      <button class="fbtn" data-filter="tools">Tools &amp; CS</button>
+    </div>
+    <div class="skills-grid" id="skillsGrid">
+      <article class="skill-card" data-cat="lang"><h3>Java</h3><p>Primary language — automation, OOP, step definitions &amp; product code.</p><div class="skill-bar"><i data-w="92"></i></div><div class="tags"><span class="tag">OOP</span><span class="tag">DSA</span></div></article>
+      <article class="skill-card" data-cat="lang"><h3>C++ · C · SQL</h3><p>C++ with STL for systems-style projects, C fundamentals, SQL for data checks.</p><div class="skill-bar"><i data-w="84"></i></div><div class="tags"><span class="tag">STL</span><span class="tag">MySQL</span></div></article>
+      <article class="skill-card" data-cat="test"><h3>Selenium + Cucumber</h3><p>WebDriver suites, BDD scenarios, Page Object Model, test debugging.</p><div class="skill-bar"><i data-w="90"></i></div><div class="tags"><span class="tag">WebDriver</span><span class="tag">Gherkin</span><span class="tag">POM</span></div></article>
+      <article class="skill-card" data-cat="tools"><h3>Developer Tools</h3><p>Git, GitHub, Bitbucket, Maven, Gradle, IntelliJ IDEA, VS Code, Linux CLI.</p><div class="skill-bar"><i data-w="88"></i></div><div class="tags"><span class="tag">Git</span><span class="tag">Maven</span><span class="tag">Gradle</span></div></article>
+      <article class="skill-card" data-cat="tools"><h3>CS Fundamentals</h3><p>OOP, Data Structures &amp; Algorithms, Design Patterns — 600+ problems deep.</p><div class="skill-bar"><i data-w="91"></i></div><div class="tags"><span class="tag">DSA</span><span class="tag">Design Patterns</span></div></article>
+      <article class="skill-card" data-cat="lang"><h3>Web — HTML · CSS · JS</h3><p>Working foundation, growing through Next.js / TypeScript product work.</p><div class="skill-bar"><i data-w="68"></i></div><div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Tailwind</span></div></article>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section reveal">
+    <div class="sec-head"><div><div class="sec-label">03 — Projects</div><h2>Things I've built</h2></div><p>Hover to tilt, tap “Details” to expand. One SaaS product, one mobile app, one clean C++ engine.</p></div>
+    <div class="proj-grid">
+      <article class="proj featured tilt">
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><span class="proj-kicker c1">★ Flagship · SaaS · Next.js</span><a href="https://bandhanhq.online/" target="_blank" rel="noopener" style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.9;text-decoration:none;border-bottom:1px dashed currentColor">● Live at bandhanhq.online ↗</a></div>
+        <h3>BandhanHQ — Wedding-Management SaaS</h3>
+        <p>A multi-tenant platform for planning weddings — designed end-to-end: product requirements, high &amp; low-level design, API contracts and database architecture, then built with AI-assisted implementation in VS Code + Codex.</p>
+        <ul><li>Responsive Next.js app with signup / signin / logout, protected routing &amp; 7-day database-backed sessions</li><li>Role-based model — Bride Admin, Groom Admin &amp; Manager — with atomic wedding + admin-membership creation</li><li>Invitation flows with SHA-256 token digests, 7-day expiry, revocation / reissue &amp; email-failure tracking</li><li><strong>Live in production on a custom domain — <a href="https://bandhanhq.online/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">bandhanhq.online</a></strong> — the deployed site is publicly live for anyone to visit</li></ul>
+        <div class="tags"><span class="tag">Next.js App Router</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS</span><span class="tag">MongoDB Atlas</span><span class="tag">Mongoose</span><span class="tag">Resend</span></div>
+        <div class="detail" id="d-bandhan">Architecture notes: personalised dashboard after onboarding, multi-tenant isolation by wedding, invitations never store raw tokens — only SHA-256 digests — and provider failures are tracked so organisers can reissue with confidence. Live in production on a custom domain: <a href="https://bandhanhq.online/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">bandhanhq.online</a>.</div>
+        <div class="proj-foot"><button class="toggle" data-target="d-bandhan">Details +</button><span style="display:flex;gap:14px;flex-wrap:wrap;align-items:center"><a class="link-btn" href="https://bandhanhq.online/" target="_blank" rel="noopener">Live site ↗</a><a class="link-btn" href="https://github.com/rishav-raj-16/BandhanHQ" target="_blank" rel="noopener">GitHub ↗</a><span style="font-family:'JetBrains Mono',monospace;font-size:12px;opacity:.75">pnpm · Vercel · Codex</span></span></div>
+      </article>
+
+      <article class="proj tilt">
+        <span class="proj-kicker c2">Mobile · Kotlin · Firebase</span>
+        <h3>LIT — Smart Parking System</h3>
+        <p>Real-time parking-reservation app. Find, reserve and navigate — built with clean MVVM architecture.</p>
+        <ul><li>Retrofit for networking, Firebase for backend &amp; auth</li><li>Google Maps SDK for location services</li></ul>
+        <div class="tags"><span class="tag">Kotlin</span><span class="tag">MVVM</span><span class="tag">Retrofit</span><span class="tag">Firebase</span><span class="tag">Maps SDK</span></div>
+        <div class="detail" id="d-lit">Focus was separation of concerns: UI, ViewModel and repository layers so live availability updates stay predictable and testable.</div>
+        <div class="proj-foot"><button class="toggle" data-target="d-lit">Details +</button><a class="link-btn" href="https://github.com/rishav-raj-16/SmartParkingSystem-Jetpack-Compose-" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+
+      <article class="proj tilt">
+        <span class="proj-kicker c3">Systems · C++ · OOP</span>
+        <h3>Tic-Tac-Toe Engine</h3>
+        <p>A modular game engine in C++ — not just a game. Reusable classes, variable board sizes, clean STL-based logic.</p>
+        <ul><li>OOP principles for maintainable, scalable code</li><li>Build automated with a Makefile</li></ul>
+        <div class="tags"><span class="tag">C++</span><span class="tag">OOP</span><span class="tag">STL</span><span class="tag">Make</span></div>
+        <div class="detail" id="d-ttt">Structured so board size, players and win logic are decoupled — the same engine core can power different board configurations without rewriting game rules.</div>
+        <div class="proj-foot"><button class="toggle" data-target="d-ttt">Details +</button><a class="link-btn" href="https://github.com/rishav-raj-16/TicTacToe" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS + EDUCATION + PLAYGROUND -->
+  <section id="achievements" class="section reveal">
+    <div class="sec-head"><div><div class="sec-label">04 — Proof</div><h2>Achievements &amp; education</h2></div></div>
+    <div class="two-col">
+      <div class="ach-card">
+        <div class="ach-item"><div class="ach-num">600+</div><div><h4>LeetCode — 600+ problems solved</h4><p>Strong DSA and algorithmic problem-solving, practised consistently alongside work. <a href="https://leetcode.com/u/rishav_raj_2002/" target="_blank" rel="noopener" style="font-weight:700;text-decoration:none;color:var(--cyan)">View profile ↗</a></p></div></div>
+        <div class="ach-item"><div class="ach-num">🥇</div><div><h4>1st Place — “Code Crusher”</h4><p>Coding event by D4 / IIC / Technocrats / GFG — college level.</p></div></div>
+        <div class="ach-item"><div class="ach-num">24h</div><div><h4>InnoSprint Hackathon — 2023</h4><p>24-hour hackathon participant (D4) — building under real time pressure.</p></div></div>
+        <p style="margin:14px 0 0;color:var(--muted);font-size:13.5px">Interests: Software Development · DSA · AI/ML (learning)</p>
+      </div>
+      <div style="display:grid;gap:16px">
+        <div class="edu-card"><div class="sec-label">Education</div><h3>B.Tech, Computer Science &amp; Engineering</h3><p>Chandigarh Engineering College, Jhanjeri<br><span style="font-family:'JetBrains Mono',monospace;font-size:12px">2021 — 2025</span></p></div>
+        <div class="play">
+          <h3>Try it — live playground</h3><p>Tap a command. This is the mindset behind the work above: automate, verify, ship.</p>
+          <div class="play-btns"><button class="pbtn" data-cmd="dsa">Run DSA check</button><button class="pbtn" data-cmd="test">Run test suite</button><button class="pbtn" data-cmd="ship">Ship checklist</button></div>
+          <div id="playOut">// Output will appear here…</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section reveal" style="padding-bottom:8px">
+    <div class="contact">
+      <div><div class="sec-label">05 — Contact</div><h2>Let's build something<br>reliable.</h2><p>Seeking a software engineering role where quality is part of building, not an afterthought. Fastest way to reach me is email — I reply directly.</p><div class="hero-actions"><a class="btn btn-primary" href="mailto:rajrishav1604@gmail.com">Email me →</a><a class="btn" href="tel:+917345753208">Call +91 73457 53208</a></div></div>
+      <div class="c-list">
+        <a class="c-item" href="mailto:rajrishav1604@gmail.com"><span><small>Email</small><strong>rajrishav1604@gmail.com</strong></span><span>↗</span></a>
+        <a class="c-item" href="https://github.com/rishav-raj-16" target="_blank" rel="noopener"><span><small>GitHub</small><strong>github.com/rishav-raj-16</strong></span><span>↗</span></a>
+        <a class="c-item" href="https://www.linkedin.com/in/raj-rishav16" target="_blank" rel="noopener"><span><small>LinkedIn</small><strong>linkedin.com/in/raj-rishav16</strong></span><span>↗</span></a>
+        <a class="c-item" href="https://leetcode.com/u/rishav_raj_2002/" target="_blank" rel="noopener"><span><small>LeetCode</small><strong>leetcode.com/u/rishav_raj_2002</strong></span><span>↗</span></a>
+        <a class="c-item" href="tel:+917345753208"><span><small>Phone</small><strong>+91 73457 53208</strong></span><span>↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer><span>© 2026 Rishav Raj — Built with Java-sharp precision &amp; a futuristic eye.</span><span style="font-family:'JetBrains Mono',monospace">IBM · Java · Selenium · Next.js</span></footer>
+</main>
+
+<script>
+// Progress + glow
+var prog=document.getElementById('progress'), glow=document.getElementById('glow');
+window.addEventListener('scroll',function(){var h=document.documentElement;var p=h.scrollTop/(h.scrollHeight-h.clientHeight||1);prog.style.width=(p*100)+'%';},{passive:true});
+window.addEventListener('mousemove',function(e){glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';});
+
+// Typing rotator
+var roles=['Full Stack Quality Engineer','Java & Selenium Automator','DSA Problem Solver — 600+ LeetCode','SDE Aspirant @ IBM','Builder of BandhanHQ SaaS'];
+var ri=0,ci=0,del=false,typed=document.getElementById('typed');
+function tick(){var word=roles[ri];if(!del){ci++;typed.textContent=word.slice(0,ci);if(ci===word.length){del=true;setTimeout(tick,1500);return;}}else{ci--;typed.textContent=word.slice(0,ci);if(ci===0){del=false;ri=(ri+1)%roles.length;}}setTimeout(tick,del?32:58);}
+tick();
+
+// Terminal log cycler
+var logs=['> debugging: tracing failures through logs','> mysql validation: end-to-end data checks','> cucumber: Given / When / Then scenarios','> workflow: regression runs in the CI lifecycle'];
+var li=0,termLog=document.getElementById('termLog');
+setInterval(function(){termLog.textContent=logs[li];li=(li+1)%logs.length;},2600);termLog.textContent=logs[0];
+
+// Neural canvas
+var canvas=document.getElementById('neural'),ctx=canvas.getContext('2d'),pts=[],mouse={x:-999,y:-999};
+function resize(){var hero=document.querySelector('.hero');canvas.width=hero.offsetWidth;canvas.height=hero.offsetHeight;init();}
+function init(){pts=[];var n=Math.min(72,Math.floor(canvas.width/16));for(var i=0;i<n;i++){pts.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.45,vy:(Math.random()-.5)*.45});}}
+canvas.parentElement.addEventListener('mousemove',function(e){var r=canvas.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;});
+canvas.parentElement.addEventListener('mouseleave',function(){mouse.x=-999;mouse.y=-999;});
+function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);var dark=window.matchMedia('(prefers-color-scheme: dark)').matches;var dotCol=dark?'rgba(0,217,255,.85)':'rgba(0,130,160,.75)';var lineCol=dark?'0,217,255':'0,130,160';
+for(var i=0;i<pts.length;i++){var p=pts[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>canvas.width)p.vx*=-1;if(p.y<0||p.y>canvas.height)p.vy*=-1;var dm=Math.hypot(p.x-mouse.x,p.y-mouse.y);if(dm<130){p.x+=(p.x-mouse.x)*.008;p.y+=(p.y-mouse.y)*.008;}ctx.beginPath();ctx.arc(p.x,p.y,1.6,0,Math.PI*2);ctx.fillStyle=dotCol;ctx.fill();
+for(var j=i+1;j<pts.length;j++){var q=pts[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<120){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle='rgba('+lineCol+','+(0.22*(1-d/120))+')';ctx.lineWidth=1;ctx.stroke();}}}
+requestAnimationFrame(draw);}
+window.addEventListener('resize',resize);resize();draw();
+
+// Reveal + counters + bars
+var io=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');
+en.target.querySelectorAll('.count').forEach(function(el){var target=+el.dataset.target,start=0,step=Math.max(1,Math.floor(target/48));var iv=setInterval(function(){start+=step;if(start>=target){start=target;clearInterval(iv);}el.textContent=start;},22);});
+en.target.querySelectorAll('.skill-bar i').forEach(function(b){b.style.width=b.dataset.w+'%';});
+}});},{threshold:.05,rootMargin:'300px 0px'});
+document.querySelectorAll('.reveal, .hero').forEach(function(el){io.observe(el);});
+// Fallback: never leave content hidden if the observer is missed (e.g. full-page capture)
+setTimeout(function(){document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');el.querySelectorAll('.skill-bar i').forEach(function(b){b.style.width=b.dataset.w+'%';});});},2000);
+// hero counters fallback (hero is observed too)
+document.querySelectorAll('.skill-bar i').forEach(function(b){setTimeout(function(){if(b.closest('.reveal')&&b.closest('.reveal').classList.contains('in'))b.style.width=b.dataset.w+'%';},600);});
+
+// Skill filter
+document.querySelectorAll('.fbtn').forEach(function(btn){btn.addEventListener('click',function(){document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('active')});btn.classList.add('active');var f=btn.dataset.filter;document.querySelectorAll('.skill-card').forEach(function(card){card.classList.toggle('hidden',!(f==='all'||card.dataset.cat===f));if(!card.classList.contains('hidden')){var bar=card.querySelector('.skill-bar i');if(bar)bar.style.width=bar.dataset.w+'%';}});});});
+
+// Tilt
+document.querySelectorAll('.tilt, #tiltCard').forEach(function(card){card.addEventListener('mousemove',function(e){var r=card.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform='perspective(900px) rotateY('+(x*6)+'deg) rotateX('+(-y*6)+'deg) translateY(-2px)';});card.addEventListener('mouseleave',function(){card.style.transform='';});});
+
+// Project details toggle
+document.querySelectorAll('.toggle').forEach(function(btn){btn.addEventListener('click',function(){var el=document.getElementById(btn.dataset.target);var open=el.classList.toggle('open');btn.textContent=open?'Details −':'Details +';});});
+
+// Copy email
+document.getElementById('copyEmailBtn').addEventListener('click',function(){var btn=this;if(navigator.clipboard){navigator.clipboard.writeText('rajrishav1604@gmail.com').then(function(){btn.textContent='Copied ✓';setTimeout(function(){btn.textContent='Copy email';},1800);});}else{btn.textContent='rajrishav1604@gmail.com';}});
+
+// Playground
+var outs={dsa:'> checkDSA()  — demo\n✓ Arrays / Graphs / DP — my core practice areas\n✓ 600+ LeetCode problems solved (see Achievements)\n→ Consistency beats intensity',test:'> mvn test  — demo of my IBM workflow\n✓ Selenium WebDriver suites in Java\n✓ Cucumber BDD — Given / When / Then\n✓ MySQL queries for end-to-end data validation',ship:'> shipChecklist()  — demo\n[ ] Tests run  [ ] Data validated\n[ ] Logs checked  [ ] Reviewed in Scrum\n→ The checklist I work to at IBM'};
+document.querySelectorAll('.pbtn').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.pbtn').forEach(function(x){x.classList.remove('active')});b.classList.add('active');var out=document.getElementById('playOut');out.textContent='Running…';setTimeout(function(){out.textContent=outs[b.dataset.cmd];},420);});});
+</script>
+</body>
+</html>
